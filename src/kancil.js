@@ -1,4 +1,4 @@
-class BosaiComponent {
+class KancilComponent {
     constructor({ target, template, events = {}, state = {}, onRendered, onMounted, onUpdate }) {
         this.targetName = target;
         this.target = document.querySelector(target);
@@ -23,7 +23,7 @@ class BosaiComponent {
 
     // render() {
     //     if (!this.target) {
-    //         console.warn(`BosaiComponent: Target element "${this.targetName}" not found. Skipping render.`);
+    //         console.warn(`KancilComponent: Target element "${this.targetName}" not found. Skipping render.`);
     //         return;
     //     }
     //     const compiled = this.compileTemplate(this.template, this.state);
@@ -43,7 +43,7 @@ class BosaiComponent {
 
     render() {
         if (!this.target) {
-            console.warn(`BosaiComponent: Target element "${this.targetName}" not found. Skipping render.`);
+            console.warn(`KancilComponent: Target element "${this.targetName}" not found. Skipping render.`);
             return;
         }
 
@@ -51,7 +51,7 @@ class BosaiComponent {
         const selectionStart = active?.selectionStart;
         const selectionEnd = active?.selectionEnd;
         //const activeAttr = active?.getAttribute?.('@input');
-        const activeBind = this.getBosaiBoundAttr(active); // ← support semua event!
+        const activeBind = this.getKancilBoundAttr(active); // ← support semua event!
 
         const compiled = this.compileTemplate(this.template, this.state);
         this.target.innerHTML = compiled;
@@ -220,7 +220,7 @@ class BosaiComponent {
         });
     }
 
-    getBosaiBoundAttr(el) {
+    getKancilBoundAttr(el) {
         if (!el?.attributes) return null;
 
         for (let attr of el.attributes) {
@@ -238,7 +238,7 @@ class BosaiComponent {
 
 //=====================================
 
-function BosaiStore(initial, storeKey = 'bosai-store') {
+function KancilStore(initial, storeKey = 'bosai-store') {
     const saved = localStorage.getItem(storeKey);
 
     //const state = saved ? JSON.parse(saved) : { ...initial };
@@ -343,15 +343,15 @@ function BosaiStore(initial, storeKey = 'bosai-store') {
 
 function getLoaderStore() {
     if (!window._loaderStore) {
-        window._loaderStore = BosaiStore({ loading: false }, 'bosai-loader');
+        window._loaderStore = KancilStore({ loading: false }, 'bosai-loader');
     }
     return window._loaderStore;
 }
-//const loaderStore = BosaiStore({ loading: false }, 'bosai-loader');
+//const loaderStore = KancilStore({ loading: false }, 'bosai-loader');
 
 const loader = getLoaderStore();
 
-const LoaderComponent = new BosaiComponent({
+const LoaderComponent = new KancilComponent({
     target: '#loader-slot', // container loader
     state: { loading: loader.state.loading },
     template: `
@@ -410,7 +410,7 @@ function fetchToCache(url, options = {}) {
         if (!force) {
             const existing = localStorage.getItem(key);
             if (existing) {
-                const store = BosaiStore({}, key);
+                const store = KancilStore({}, key);
                 return Promise.resolve(store);
             }
         }
@@ -423,7 +423,7 @@ function fetchToCache(url, options = {}) {
                 return res.json();
             })
             .then(data => {
-                const store = BosaiStore({}, key);
+                const store = KancilStore({}, key);
                 store.import(data);
                 return store;
             })
@@ -441,7 +441,7 @@ function fetchToCache(url, options = {}) {
 
 //=====================================
 
-function BosaiDevTool(target = 'body') {
+function KancilDevTool(target = 'body') {
     const container = document.createElement('div');
     container.style = `
         position: fixed;
@@ -458,7 +458,7 @@ function BosaiDevTool(target = 'body') {
         box-shadow: 0 0 10px rgba(0,0,0,0.6);
     `;
 
-    container.innerHTML = `<strong style="color:#0ff">Bosai DevTool</strong><div id="devtool-content"></div>`;
+    container.innerHTML = `<strong style="color:#0ff">Kancil DevTool</strong><div id="devtool-content"></div>`;
 
     document.querySelector(target).appendChild(container);
 
@@ -515,24 +515,24 @@ function BosaiDevTool(target = 'body') {
 
 //=====================================
 
-function BosaiApp({ stores = {}, components = [] }) {
+function KancilApp({ stores = {}, components = [] }) {
     const app = {};
     app.stores = {};
 
     for (const [name, config] of Object.entries(stores)) {
-        const store = BosaiStore(config.state || {}, config.key || name);
+        const store = KancilStore(config.state || {}, config.key || name);
         app[name] = store;
         app.stores[name] = store;
     }
 
     components.forEach(comp => {
         // const store = app[comp.store]?.state || {};
-        // const instance = new BosaiComponent({
+        // const instance = new KancilComponent({
         //     ...comp,
         //     state,
         // });
         const storeState = app[comp.store]?.state || {};
-        const instance = new BosaiComponent({
+        const instance = new KancilComponent({
             ...comp,
             state: storeState,
         });
@@ -549,4 +549,4 @@ function BosaiApp({ stores = {}, components = [] }) {
 
 //=====================================
 
-export { BosaiApp, BosaiComponent, BosaiStore, BosaiDevTool, getLoaderStore, fetchToCache };
+export { KancilApp, KancilComponent, KancilStore, KancilDevTool, getLoaderStore, fetchToCache };
