@@ -4,17 +4,8 @@
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
   </a>
-  <a href="https://github.com/pinoruswana/kanciljs">
-    <img src="https://img.shields.io/badge/github-pinoruswana/kanciljs-blue?logo=github" alt="GitHub Repo">
-  </a>
-  <a href="https://github.com/pinoruswana/kanciljs/releases">
-    <img src="https://img.shields.io/badge/version-0.1.0-orange" alt="Version">
-  </a>
   <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
     <img src="https://img.shields.io/badge/made%20with-JavaScript-blue?logo=javascript" alt="JS Library">
-  </a>
-  <a href="https://bundlephobia.com/package/kanciljs">
-    <img src="https://img.shields.io/bundlephobia/min/kanciljs?label=min+size" alt="Bundle Size">
   </a>
 
   <a href="https://www.npmjs.com/package/kanciljs" target="_blank" rel="noopener">
@@ -24,6 +15,14 @@
 <a href="https://stackblitz.com/github/pinoruswana/kanciljs-demo" target="_blank" rel="noopener">
   <img src="https://img.shields.io/badge/StackBlitz-Live-blue?logo=stackblitz" alt="Open in StackBlitz">
 </a>
+<br />
+  <a href="https://github.com/pinoruswana/kanciljs">
+    <img src="https://img.shields.io/badge/github-pinoruswana/kanciljs-blue?logo=github" alt="GitHub Repo">
+  </a>
+
+  <a href="https://bundlephobia.com/package/kanciljs">
+    <img src="https://img.shields.io/bundlephobia/min/kanciljs?label=min+size" alt="Bundle Size">
+  </a>
 
 </p>
 
