@@ -5,10 +5,10 @@ class KancilComponent {
         this.template = template;
         this.events = events;
         this.state = state;
-        this.onRendered = onRendered; // ← ✅ Tambahkan baris ini
+        this.onRendered = onRendered;
         this.onMounted = onMounted;
         this.onUpdate = onUpdate;
-        this._hasMounted = false; // ⬅️ untuk tracking mount pertama
+        this._hasMounted = false;
     }
 
     setState(newState) {
@@ -55,17 +55,6 @@ class KancilComponent {
 
         const compiled = this.compileTemplate(this.template, this.state);
         this.target.innerHTML = compiled;
-
-        // Restore focus & cursor
-        // if (activeAttr) {
-        //     const newInput = this.target.querySelector(`[\\@input="${activeAttr}"]`);
-        //     if (newInput) {
-        //         newInput.focus();
-        //         try {
-        //             newInput.setSelectionRange(selectionStart, selectionEnd);
-        //         } catch (e) {}
-        //     }
-        // }
 
         this.bindEvents();
         this.bindInputs();
@@ -171,7 +160,7 @@ class KancilComponent {
 
                 const isFocused = document.activeElement === input;
 
-                // // // HANYA set value kalau input tidak sedang difokusin
+                // // HANYA set value kalau input tidak sedang difokusin
                 // if (!isFocused && input.value !== this.state[key]) {
                 //     input.value = this.state[key];
                 // }
@@ -289,13 +278,8 @@ function KancilStore(initial, storeKey = 'bosai-store') {
             save();
 
             (listeners[key] || []).forEach(fn => fn(value));
-            wildcardListeners.forEach(fn => fn({ ...state })); // ⬅️ ini penting!
+            wildcardListeners.forEach(fn => fn({ ...state }));
         },
-
-        // subscribe(key, callback) {
-        //     if (!listeners[key]) listeners[key] = [];
-        //     listeners[key].push(callback);
-        // },
 
         subscribe(key, callback) {
             if (key === '*') {
