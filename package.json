@@ -1,0 +1,37 @@
+{
+    "name": "kancil",
+    "version": "0.1.0",
+    "description": "🐭 Kancil.js — A fast, lightweight, and clever frontend micro-library",
+    "main": "src/kancil.js",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "test": "echo \"🧪 No tests yet — But Kancil is already slick.\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/pinoruswana/kancil.git"
+    },
+    "keywords": [
+        "kancil",
+        "javascript",
+        "frontend",
+        "lightweight",
+        "micro-library",
+        "dom",
+        "binding",
+        "templating",
+        "state-management"
+    ],
+    "author": {
+        "name": "Pino Ruswana",
+        "email": "pino.ruswana@gmail.com",
+        "url": "https://github.com/pinoruswana"
+    },
+    "license": "MIT",
+    "engines": {
+        "node": ">=16"
+    }
+}

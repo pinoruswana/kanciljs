@@ -1,0 +1,82 @@
+# ======================
+# Node & NPM
+# ======================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+.pnpm-debug.log*
+
+# ======================
+# Build & Output
+# ======================
+dist/
+build/
+coverage/
+lib/
+*.tsbuildinfo
+
+# ======================
+# OS / Editor
+# ======================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+*.swp
+*.swo
+*.swn
+
+# ======================
+# VSCode & IDEs
+# ======================
+.vscode/
+.idea/
+*.code-workspace
+
+# ======================
+# Environment
+# ======================
+.env
+.env.*
+!.env.example
+
+# ======================
+# TypeScript
+# ======================
+*.tsbuildinfo
+*.d.ts
+*.map
+
+# ======================
+# Tests
+# ======================
+coverage/
+nyc_output/
+jest-cache/
+jest-output/
+
+# ======================
+# Logs
+# ======================
+*.log
+logs/
+*.log.*
+
+# ======================
+# Others
+# ======================
+*.bak
+*.tmp
+*.cache
+.cache/
+turbo/
+
+# Optional: Ignore your own local dev script output
+*.local.js
+*.local.ts
+
+.bun/
+.vite/
+clean-history.sh
