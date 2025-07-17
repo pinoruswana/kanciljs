@@ -16,6 +16,15 @@
   <a href="https://bundlephobia.com/package/kanciljs">
     <img src="https://img.shields.io/bundlephobia/min/kanciljs?label=min+size" alt="Bundle Size">
   </a>
+
+  <a href="https://www.npmjs.com/package/kanciljs" target="_blank" rel="noopener">
+  <img src="https://img.shields.io/npm/v/kanciljs" alt="NPM Version">
+</a>
+
+<a href="https://stackblitz.com/github/pinoruswana/kanciljs-demo" target="_blank" rel="noopener">
+  <img src="https://img.shields.io/badge/StackBlitz-Live-blue?logo=stackblitz" alt="Open in StackBlitz">
+</a>
+
 </p>
 
 **A fast and lightweight frontend library for reactive components without the complexity.**
