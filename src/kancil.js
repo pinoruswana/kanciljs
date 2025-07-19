@@ -273,6 +273,11 @@ function KancilStore(initial, storeKey = 'bosai-store') {
         //     save();
         //     (listeners[key] || []).forEach(fn => fn(value));
         // },
+
+        get() {
+            return { ...state };
+        },
+
         set(key, value) {
             state[key] = value;
             save();
@@ -533,4 +538,69 @@ function KancilApp({ stores = {}, components = [] }) {
 
 //=====================================
 
-export { KancilApp, KancilComponent, KancilStore, KancilDevTool, getLoaderStore, fetchToCache };
+function KancilPage(
+    name,
+    {
+        store,
+        target = '#page-outlet',
+        state = {},
+        template,
+        onMounted,
+        onRendered,
+        onUpdate,
+        widgets = [], // Widgets = Child componets in the page
+    }
+) {
+    const component = new KancilComponent({
+        target,
+        state,
+        template,
+        onMounted: () => {
+            // Jalankan widget kalau ada
+            widgets.forEach(widget => {
+                if (typeof widget === 'function') {
+                    widget(); // bisa return KancilComponent kalau mau disimpan
+                } else if (typeof widget?.render === 'function') {
+                    widget.render(); // Kalau parameter langsung instance
+                }
+            });
+
+            if (typeof onMounted === 'function') onMounted();
+        },
+        onRendered,
+        onUpdate,
+    });
+
+    component.render();
+    return component;
+}
+
+function KancilWidget({ target, store, template, ...hooks }) {
+    const isStore = typeof store?.get === 'function';
+
+    const comp = new KancilComponent({
+        target,
+        state: isStore ? store.get() : store,
+        template,
+        ...hooks,
+    });
+
+    if (isStore) {
+        store.subscribe('*', state => comp.setState(state));
+    }
+
+    return comp;
+}
+
+//=====================================
+
+export {
+    KancilApp,
+    KancilPage,
+    KancilComponent,
+    KancilStore,
+    KancilWidget,
+    KancilDevTool,
+    getLoaderStore,
+    fetchToCache,
+};

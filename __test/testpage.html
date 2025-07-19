@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="page-outlet"></div>
+
+        <script type="module">
+            import { KancilPage, KancilComponent, KancilStore, KancilWidget } from '../src/kancil.js';
+
+            const globalStore = KancilStore({ name: 'Ujang', menu: 'Batagor' });
+
+            console.log(globalStore);
+
+            // function WelcomeWidget(store) {
+            //     const comp = new KancilComponent({
+            //         target: '#welcome',
+            //         state: store.get(),
+            //         template: `<div>Halo, {{name}} 👋</div>`,
+            //     });
+
+            //     store.subscribe('*', state => {
+            //         comp.setState(state);
+            //     });
+            //     return comp;
+            // }
+
+            const WelcomeWidget = store =>
+                KancilWidget({
+                    target: '#welcome',
+                    store,
+                    template: `<div>Halo, {{name}} 👋</div>`,
+                });
+
+            const MenuWidget = store =>
+                KancilWidget({
+                    target: '#menu',
+                    store,
+                    template: `<div>Menu hari ini: {{menu}} </div>`,
+                });
+
+            KancilPage('home', {
+                target: '#page-outlet',
+                template: `
+                <h1>Selamat Datang</h1>
+                <div id="welcome"></div>
+                <div id="menu"></div>
+              `,
+                widgets: [() => WelcomeWidget(globalStore).render(), () => MenuWidget(globalStore).render()],
+                onMounted() {
+                    setTimeout(() => {
+                        globalStore.set('name', 'Pino Bos!');
+                    }, 2000);
+                },
+            });
+
+            setTimeout(() => {
+                globalStore.set('menu', 'Dimsum Enak');
+            }, 5000);
+        </script>
+    </body>
+</html>
